@@ -1,0 +1,2 @@
+### Eu tive alguns problemas com migrações. ###
+Concluí (e posso estar errado) que não posso amontoar migrações fracassadas.
