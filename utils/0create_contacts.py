@@ -59,3 +59,17 @@ if __name__ == '__main__':
 
     if len(django_contacts) > 0:
         Contact.objects.bulk_create(django_contacts)
+
+# Final do segundo erro
+#   File "C:\Users\emers\OneDrive\Documentos\projeto_agenda_2\venv\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+#     mod = importlib.import_module(self.SETTINGS_MODULE)
+#   File "C:\Users\emers\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+#     return _bootstrap._gcd_import(name[level:], package, level)
+#   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+#   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+#   File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+#   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+#   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+#   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+#   File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+# ModuleNotFoundError: No module named 'project'
