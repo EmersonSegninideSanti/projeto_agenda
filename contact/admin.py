@@ -4,7 +4,7 @@ from contact import models
 # Register your models here.
 
 class ContactAdmin (admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'phone',)
+    list_display = ('id','first_name', 'last_name', 'phone',)
 
 class CategoryAdmin (admin.ModelAdmin):
     list_display = ('name',)

@@ -133,6 +133,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_DIRS = (
     BASE_DIR / 'base_static',
+    # BASE_DIR / 'static' # eu que coloquei isso e nao funciona
 )
 
 # Default primary key field type
