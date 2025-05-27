@@ -18,27 +18,27 @@
                 {% for contact in contacts %}
                 <tr class="table-row">
                     <td class="table-cel">
-                        <a href="#" class="table-link">
+                        <a href={% url "contact" contact.id %} class="table-link">
                             {{contact.id}}
                         </a>
                     </td>
                     <td class="table-cel">
-                        <a href="#" class="table-link">
+                        <a href={% url "contact" contact.id %} class="table-link">
                             {{contact.first_name}}
                         </a>
                     </td>
                     <td class="table-cel">
-                        <a href="#" class="table-link">
+                        <a href={% url "contact" contact.id %} class="table-link">
                             {{contact.last_name}}
                         </a>
                     </td>
                     <td class="table-cel">
-                        <a href="#" class="table-link">
+                        <a href={% url "contact" contact.id %} class="table-link">
                             {{contact.phone}}
                         </a>
                     </td>
                     <td class="table-cel">
-                        <a href="#" class="table-link">
+                        <a href={% url "contact" contact.id %} class="table-link">
                             {{contact.email}}
                         </a>
                     </td>
