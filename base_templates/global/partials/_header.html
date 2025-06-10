@@ -18,7 +18,7 @@
         </ul>
     </nav>
     <div class="search">
-        <form action="" method="get">
+        <form action={% url "search" %} method="GET"> <!--action indica o caminho-->
             <input type="search" class="search-input"
             name="q" placeholder="Search" id="search">
         </form>
