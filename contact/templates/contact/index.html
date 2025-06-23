@@ -15,6 +15,7 @@
                 </tr>
             </thead>
             <tbody>
+                {% if contacts %}
                 {% for contact in contacts %}
                 <tr class="table-row">
                     <td class="table-cel">
@@ -44,6 +45,11 @@
                     </td>
                 </tr>
                 {% endfor %}
+                {% else %}
+                <div class="single-contact">
+                    <h1>Nenhum contato encontrado.</h1>
+                </div>
+                {% endif %}
             </tbody>
         </table>
     </div>
