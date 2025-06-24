@@ -5,6 +5,7 @@
             <caption class="table-caption">
                 Contacts
             </caption>
+            {% if contacts %}
             <thead>
                 <tr class="table-row-header table-row">
                     <th class="table-header">ID</th>
@@ -15,7 +16,6 @@
                 </tr>
             </thead>
             <tbody>
-                {% if contacts %}
                 {% for contact in contacts %}
                 <tr class="table-row">
                     <td class="table-cel">
@@ -45,12 +45,12 @@
                     </td>
                 </tr>
                 {% endfor %}
-                {% else %}
+            </tbody>
+            {% else %}
                 <div class="single-contact">
                     <h1>Nenhum contato encontrado.</h1>
                 </div>
-                {% endif %}
-            </tbody>
+            {% endif %}
         </table>
     </div>
 {% endblock content %}
