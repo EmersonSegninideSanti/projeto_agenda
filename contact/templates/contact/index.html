@@ -5,7 +5,7 @@
             <caption class="table-caption">
                 Contacts
             </caption>
-            {% if contacts %}
+            {% if page_obj %}
             <thead>
                 <tr class="table-row-header table-row">
                     <th class="table-header">ID</th>
@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for contact in contacts %}
+                {% for contact in page_obj %}
                 <tr class="table-row">
                     <td class="table-cel">
                         <a href={% url "contact" contact.id %} class="table-link">

@@ -2,14 +2,18 @@ from django.shortcuts import render
 from contact.models import Contact
 from django.http import Http404
 import django.conf
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def index (request, ):
     contacts = Contact.objects.filter(show=True)
     print(django.conf.settings.DEBUG)
+    paginator = Paginator(contacts, 25)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     return render(request, 'contact/index.html', context= {
-        'contacts': contacts
+        'page_obj': page_obj
     })
 
 def search(request, ):
@@ -21,8 +25,11 @@ def search(request, ):
     print(research_value)
     # Aqui acontece uma query. QuerySetApi - field lookup.
     contacts = Contact.objects.filter(first_name__icontains = research_value)
+    paginator = Paginator(contacts, 25)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     return render (request,'contact/index.html', context = {
-        'contacts': contacts
+        'page_obj': page_obj
     })
     # Código simples para procurar em ids apenas.
     # research_value = request.GET['q']
