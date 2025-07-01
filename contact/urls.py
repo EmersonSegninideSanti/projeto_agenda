@@ -5,6 +5,8 @@ from contact import views
 
 urlpatterns = [
     path( '', views.index, name= 'index'),
-    path( '<int:id_number>/', views.contact_view, name = 'contact',),
-    path( 'search/', views.search , name="search")
+    path( 'search/', views.search , name="search"),
+
+# CRUD do modelo Contact 
+    path( 'contact/<int:id_number>/', views.contact_view, name = 'contact',),
 ]
