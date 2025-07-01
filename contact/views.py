@@ -53,3 +53,11 @@ def contact_view (request, id_number):
     return render(request, 'contact/contact.html', context= {
         'contact': contact
     })
+
+def create (request):
+    if request.method == 'POST':
+        print(request.method)
+        print(request.POST.get('first_name'))
+        print(request.POST.get('last_name'))
+    print(request.method)
+    return render(request,'contact/create.html', )
