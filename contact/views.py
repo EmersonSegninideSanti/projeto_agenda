@@ -3,6 +3,14 @@ from contact.models import Contact
 from django.http import Http404
 import django.conf
 from django.core.paginator import Paginator
+from django import forms
+
+class ContactForm(forms.ModelForm):
+    class Meta():
+        model = Contact
+        fields = (
+            'first_name','last_name','phone'
+        )
 
 # Create your views here.
 
@@ -54,10 +62,22 @@ def contact_view (request, id_number):
         'contact': contact
     })
 
+# def create (request):
+#     if request.method == 'POST':
+#         print(request.method)
+#         print(request.POST.get('first_name'))
+#         print(request.POST.get('last_name'))
+#     print(request.method)
+#     return render(request,'contact/create.html', )
+
+
 def create (request):
     if request.method == 'POST':
-        print(request.method)
-        print(request.POST.get('first_name'))
-        print(request.POST.get('last_name'))
-    print(request.method)
-    return render(request,'contact/create.html', )
+        form = ContactForm(request.POST) # Objeto de classe especialista de ModelForm
+        return render(request,'contact/create.html', context =
+                  { 'form': form, }
+                  )
+    form = ContactForm()
+    return render(request,'contact/create.html', context =
+          { 'form': form, }
+          )  
