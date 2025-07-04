@@ -31,6 +31,7 @@ def search(request, ):
         return index(request)
     print(request.GET)
     print(research_value)
+    print(request.headers)
     # Aqui acontece uma query. QuerySetApi - field lookup.
     contacts = Contact.objects.filter(first_name__icontains = research_value)
     paginator = Paginator(contacts, 25)  # Show 25 contacts per page.
@@ -74,9 +75,29 @@ def contact_view (request, id_number):
 def create (request):
     if request.method == 'POST':
         form = ContactForm(request.POST) # Objeto de classe especialista de ModelForm
+
+        print()
+        print('*')
+        for item in form:
+            print(item)
+            print(f'{item.label.upper()}: {item.value}')
+        print('*')
+        print()
+
+        print('#')
+        print(f'{request.POST}')
+        print(f'first_name: {request.POST['first_name']}')
+        print(f'last_name: {request.POST['last_name']}')
+        print(f'phone: {request.POST['phone']}')
+        print('#')
+        print()
+
+
         return render(request,'contact/create.html', context =
                   { 'form': form, }
                   )
+    else:
+        print(request.headers)
     form = ContactForm()
     return render(request,'contact/create.html', context =
           { 'form': form, }
