@@ -68,6 +68,9 @@ def contact_view (request, id_number):
 def create (request):
     if request.method == 'POST':
         form = ContactForm(request.POST) # Objeto de classe especialista de ModelForm
+        print('*')
+        print(request.POST)
+        print('*')
         return render(request,'contact/create.html', context =
                   { 'form': form, }
                   )
