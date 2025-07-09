@@ -3,6 +3,20 @@ from contact.models import Contact
 from django.core.exceptions import ValidationError
 
 class ContactForm(forms.ModelForm):
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({
+            'class': '1234'
+        })
+        self.fields['phone'].widget.attrs.update({
+            'minlength': '8'
+        })
+        # Cada field é um widget (pelo que entendi)
+        self.fields['first_name'].label = 'Primeiro Nome'
+        self.fields['last_name'].label = 'Sobrenome'
+        self.fields['phone'].label = 'Telefone'
+        self.fields['phone'].help_text = 'Apenas telefones brasileiros.'
+
     class Meta():
         model = Contact
         fields = (
