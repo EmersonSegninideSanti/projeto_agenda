@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from contact.models import Contact
 from django.http import Http404
 import django.conf
@@ -71,10 +71,17 @@ def create (request):
         print('*')
         print(request.POST)
         print('*')
+        if form.is_valid:
+            form.save()
+            form = ContactForm()
+            return render(request,'contact/create.html', context =
+                          { 'form': form, 'criacao_sucesso': 1 }
+                          )
+            # return redirect('create')
         return render(request,'contact/create.html', context =
-                  { 'form': form, }
+                  { 'form': form, 'criacao_sucesso': 0}
                   )
     form = ContactForm()
     return render(request,'contact/create.html', context =
-          { 'form': form, }
+          { 'form': form, 'criacao_sucesso': 0}
           )  

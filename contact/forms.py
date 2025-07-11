@@ -5,13 +5,14 @@ from django.core.exceptions import ValidationError
 class ContactForm(forms.ModelForm):
     def __init__(self,*args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Cada field é um widget (pelo que entendi) e isto é manipulação de widgets
+        # Existe a alternativa de criar a widget para o field.
         self.fields['first_name'].widget.attrs.update({
             'class': '1234'
         })
         self.fields['phone'].widget.attrs.update({
             'minlength': '8'
         })
-        # Cada field é um widget (pelo que entendi)
         self.fields['first_name'].label = 'Primeiro Nome'
         self.fields['last_name'].label = 'Sobrenome'
         self.fields['phone'].label = 'Telefone'
@@ -20,7 +21,7 @@ class ContactForm(forms.ModelForm):
     class Meta():
         model = Contact
         fields = (
-            'first_name','last_name','phone'
+            'first_name','last_name','description','phone','category',
         )
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -28,11 +29,11 @@ class ContactForm(forms.ModelForm):
         last_name = cleaned_data.get('last_name')
         if first_name == last_name:
             raise ValidationError( # não funciona.
-                'First Name é igual a Last Name.'
+                f'First Name é igual a Last Name.'
             )
         if len(first_name) == 1:
             self.add_error(
-                'first_name',ValidationError('First name não pode conter apenas um caracter',code='invalid')
+                'first_name',ValidationError(f'{self['first_name'].label} não pode conter apenas um caracter',code='invalid')
             )
         if len(last_name) == 1:
             self.add_error(

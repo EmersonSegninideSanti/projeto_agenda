@@ -1,5 +1,6 @@
 {% extends "global/base.html" %}
-{% block content %} 
+{% block content %}
+  {% if criacao_sucesso == 1 %}<script>alert('Contato criado.')</script>{% endif %}
   <div class="form-wrapper">
 
     <h2>Contact</h2>
