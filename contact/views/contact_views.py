@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from contact.models import Contact
 from django.http import Http404
 import django.conf
 from django.core.paginator import Paginator
 from contact.forms import ContactForm
+from django.urls import reverse
 
 
 # Create your views here.
@@ -66,22 +67,37 @@ def contact_view (request, id_number):
 
 
 def create (request):
+    form_action = reverse('create')
     if request.method == 'POST':
         form = ContactForm(request.POST) # Objeto de classe especialista de ModelForm
-        print('*')
-        print(request.POST)
-        print('*')
         if form.is_valid:
-            form.save()
+            contact = form.save()
             form = ContactForm()
-            return render(request,'contact/create.html', context =
-                          { 'form': form, 'criacao_sucesso': 1 }
-                          )
-            # return redirect('create')
+            return redirect('update', contact_id = contact.pk)
         return render(request,'contact/create.html', context =
-                  { 'form': form, 'criacao_sucesso': 0}
+                  { 'form': form, 'form_action': form_action,},
                   )
     form = ContactForm()
     return render(request,'contact/create.html', context =
-          { 'form': form, 'criacao_sucesso': 0}
-          )  
+          { 'form': form,},
+          )
+
+def update(request, contact_id):
+    contact = get_object_or_404( Contact,pk=contact_id )
+    form_action = reverse('update',args=(contact_id,))
+    if request.method == 'POST':
+        form = ContactForm(request.POST,instance = contact)
+        context = {'form': form,'form_action': form_action}
+        if form.is_valid:
+            form.save()
+            return redirect('update',contact_id=contact.pk)
+        return render(request,'contact/create.html',context)
+    context = {
+        'form': ContactForm(instance=contact),
+        'form_action': form_action,
+        }
+    return render(
+        request,
+        'contact/create.html',
+        context
+    )
