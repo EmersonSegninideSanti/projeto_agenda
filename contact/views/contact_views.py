@@ -101,3 +101,25 @@ def update(request, contact_id):
         'contact/create.html',
         context
     )
+
+# Essa view eu fiz do meu jeito.
+def delete(request, contact_id):
+
+    contact = get_object_or_404(
+        Contact, pk=contact_id, show=True
+    )
+    deleting = 'y'
+    confirmation = request.POST['confirmation']
+
+    if confirmation == 'y':
+        contact.delete()
+        return redirect('index')
+
+    return render(
+        request,
+        'contact/contact.html',
+        {
+            'contact': contact,
+            'deleting': deleting,
+        }
+    )
