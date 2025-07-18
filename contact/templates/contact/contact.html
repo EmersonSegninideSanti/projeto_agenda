@@ -11,7 +11,9 @@
     <p><b>Created Date:</b> {{ contact.created_date }}</p>
     <p><b>Description:</b> {{ contact.description }}</p>
     <p><b>Category:</b> {{ contact.category.name }}</p>
-
+    {% if contact.picture %}
+      <p><img src={{ contact.picture.url }}></p>
+    {% endif %}
     <div class="contact-links"> 
     <a href="{% url 'update' contact.id %}" class="btn btn-link">Update</a>
     <form action="{% url 'delete' contact.id %}" method="POST">

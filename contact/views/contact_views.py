@@ -69,7 +69,7 @@ def contact_view (request, id_number):
 def create (request):
     form_action = reverse('create')
     if request.method == 'POST':
-        form = ContactForm(request.POST) # Objeto de classe especialista de ModelForm
+        form = ContactForm(request.POST, request.FILES) # Objeto de classe especialista de ModelForm
         if form.is_valid:
             contact = form.save()
             form = ContactForm()
@@ -86,7 +86,7 @@ def update(request, contact_id):
     contact = get_object_or_404( Contact,pk=contact_id )
     form_action = reverse('update',args=(contact_id,))
     if request.method == 'POST':
-        form = ContactForm(request.POST,instance = contact)
+        form = ContactForm(request.POST, request.FILES ,instance = contact)
         context = {'form': form,'form_action': form_action}
         if form.is_valid:
             form.save()
