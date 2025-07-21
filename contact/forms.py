@@ -1,6 +1,9 @@
 from django import forms
 from contact.models import Contact
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 
 class ContactForm(forms.ModelForm):
     picture = forms.ImageField(
@@ -63,3 +66,35 @@ class ContactForm(forms.ModelForm):
 
         return phone
     
+class RegisterForm(UserCreationForm):
+# A validação deste *form não funciona. Muito estranho.
+
+    first_name = forms.CharField(
+        required=True
+    )
+    last_name = forms.CharField(
+        required=True
+    )
+    email = forms.EmailField(
+        required=True
+    )
+
+
+    class Meta():
+        model = User
+        fields = (
+            'username', 'email', 'password1',
+            'password2', 'first_name', 'last_name'
+        )
+
+    def clean_email(self):
+        email_ = self.cleaned_data.get('email')
+        if User.objects.filter(email=email_).exists():
+            print(User.objects.get(email = email_))
+            print('Encontrou um email igual')
+            # self.add_error(
+            #     'email',
+            #     ValidationError('Já existe este e-mail', code='invalid')
+            # )
+            raise ValidationError('Já existe este e-mail', code='invalid')
+        return email_
