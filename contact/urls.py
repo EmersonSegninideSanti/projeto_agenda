@@ -2,7 +2,6 @@ from django.urls import path
 from contact import views
 
 
-
 urlpatterns = [
     path( '', views.index, name= 'index'),
     path( 'contact/search/', views.search , name="search"),
@@ -17,6 +16,6 @@ urlpatterns = [
 # CRUD do modelo Contact 
     # path( 'contact/<int:id_number>/', views.contact_view, name = 'contact',),
     path( 'user/create/', views.register, name='register',),
-    # path( 'contact/<int:contact_id>/update/', views.update, name = 'update',),
+    path( 'contact/<int:user_id>/update/', views.user_update, name = 'uupdate',),
     # path( 'contact/<int:contact_id>/delete/', views.delete, name = 'delete',),
 ]
