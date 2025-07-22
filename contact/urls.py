@@ -16,6 +16,8 @@ urlpatterns = [
 # CRUD do modelo Contact 
     # path( 'contact/<int:id_number>/', views.contact_view, name = 'contact',),
     path( 'user/create/', views.register, name='register',),
-    path( 'contact/<int:user_id>/update/', views.user_update, name = 'uupdate',),
+    path( 'user/login', views.user_login, name = 'login',),
+    path( 'user/logout', views.user_logout, name = 'logout',),
+    # path( 'user/<int:user_id>/update/', views.user_update, name = 'uupdate',),
     # path( 'contact/<int:contact_id>/delete/', views.delete, name = 'delete',),
 ]

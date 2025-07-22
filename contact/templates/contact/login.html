@@ -1,8 +1,14 @@
 {% extends "global/base.html" %}
+
 {% block content %}
+
+  {% if user.is_authenticated %}
+  <p>Estás logado.</p>
+  <a href={{ 'logout' }}>DESLOGAR</a>
+  {% else %}
   <div class="form-wrapper">
 
-    <h2>Login</h2>
+    <h2>User</h2>
 
   <form
     action="{{ form_action }}"
@@ -25,4 +31,6 @@
     </div>
   </div> 
   </form>
+  {% endif %}
+
 {% endblock content %}
