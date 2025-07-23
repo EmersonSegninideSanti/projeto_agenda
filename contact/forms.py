@@ -98,3 +98,12 @@ class RegisterForm(UserCreationForm):
             # )
             raise ValidationError('Já existe este e-mail', code='invalid')
         return email_
+    
+class UpdateRegisterForm (forms.ModelForm):
+# Não tem as senhas. Precisarei rever a aula.
+    class Meta():
+        model = User
+        fields = (
+            'username', 'email',
+            'first_name', 'last_name',
+        )

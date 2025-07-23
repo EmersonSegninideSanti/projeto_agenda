@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from contact.forms import RegisterForm
+from contact.forms import RegisterForm, UpdateRegisterForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -43,12 +43,16 @@ def user_logout(request):
     auth.logout(request)
     return redirect('login')
 
-def user_update(request, user_id):
-    user = get_object_or_404(User, user_id)
-    form = RegisterForm(instance=user)
-    if request.method == 'POST':
-        if form.is_valid:
-            form.save()
-    render(request,'contact/register.html',context={
-        'form': form,
-    })
+def user_update(request,):
+    if request.method != 'POST':
+        form = UpdateRegisterForm(instance=request.user)
+        return render(request,'contact/user_update.html',context={
+            'form': form,
+        })
+    form = UpdateRegisterForm(data=request.POST,instance=request.user)
+    if not form.is_valid():
+        return render(request,'contact/user_update.html',context={
+            'form': form,
+        })
+    form.save()
+    return redirect('index')

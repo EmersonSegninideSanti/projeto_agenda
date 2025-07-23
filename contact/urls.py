@@ -18,6 +18,6 @@ urlpatterns = [
     path( 'user/create/', views.register, name='register',),
     path( 'user/login', views.user_login, name = 'login',),
     path( 'user/logout', views.user_logout, name = 'logout',),
-    # path( 'user/<int:user_id>/update/', views.user_update, name = 'uupdate',),
+    path( 'user/update/', views.user_update, name = 'update',),
     # path( 'contact/<int:contact_id>/delete/', views.delete, name = 'delete',),
 ]
