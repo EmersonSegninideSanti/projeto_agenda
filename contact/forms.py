@@ -27,7 +27,10 @@ class ContactForm(forms.ModelForm):
         self.fields['first_name'].label = 'Primeiro Nome'
         self.fields['last_name'].label = 'Sobrenome'
         self.fields['phone'].label = 'Telefone'
+        self.fields['category'].label = 'Categoria'
+        self.fields['picture'].label = 'Imagem'
         self.fields['phone'].help_text = 'Apenas telefones brasileiros.'
+        self.fields['picture'].required = False
 
     class Meta():
         model = Contact
@@ -69,6 +72,12 @@ class ContactForm(forms.ModelForm):
 class RegisterForm(UserCreationForm):
 # A validação deste *form não funciona. Muito estranho.
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Nome de usuário'
+        self.fields['first_name'].label = 'Primeiro nome'
+        self.fields['last_name'].label = 'Sobrenome'
+
     first_name = forms.CharField(
         required=True
     )
@@ -107,3 +116,10 @@ class UpdateRegisterForm (forms.ModelForm):
             'username', 'email',
             'first_name', 'last_name',
         )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Nome de usuário'
+        self.fields['first_name'].label = 'Primeiro nome'
+        self.fields['last_name'].label = 'Sobrenome'
+        self.fields['email'].label = 'Endereço de e-mail'

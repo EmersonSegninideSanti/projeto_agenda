@@ -5,6 +5,7 @@ import django.conf
 from django.core.paginator import Paginator
 from contact.forms import ContactForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -65,7 +66,7 @@ def contact_view (request, id_number):
 #     print(request.method)
 #     return render(request,'contact/create.html', )
 
-
+@login_required(login_url='login')
 def create (request):
     form_action = reverse('create')
     if request.method == 'POST':
@@ -82,6 +83,7 @@ def create (request):
           { 'form': form,},
           )
 
+@login_required(login_url='login')
 def update(request, contact_id):
     contact = get_object_or_404( Contact,pk=contact_id )
     form_action = reverse('update',args=(contact_id,))
@@ -103,6 +105,7 @@ def update(request, contact_id):
     )
 
 # Essa view eu fiz do meu jeito.
+@login_required(login_url='login')
 def delete(request, contact_id):
 
     contact = get_object_or_404(

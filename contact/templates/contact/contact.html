@@ -7,23 +7,23 @@
 
     <p><b>ID:</b> {{ contact.id }}</p>
     <p><b>E-mail:</b> {{ contact.email }}</p>
-    <p><b>Phone:</b> {{ contact.phone }}</p>
-    <p><b>Created Date:</b> {{ contact.created_date }}</p>
-    <p><b>Description:</b> {{ contact.description }}</p>
-    <p><b>Category:</b> {{ contact.category.name }}</p>
+    <p><b>Telefone:</b> {{ contact.phone }}</p>
+    <p><b>Data de Criação:</b> {{ contact.created_date }}</p>
+    <p><b>Descrição:</b> {{ contact.description }}</p>
+    <p><b>Categoria:</b> {{ contact.category.name }}</p>
     {% if contact.picture %}
       <p><img src={{ contact.picture.url }}></p>
     {% endif %}
     <div class="contact-links"> 
-    <a href="{% url 'update' contact.id %}" class="btn btn-link">Update</a>
+    <a href="{% url 'update' contact.id %}" class="btn btn-link">Editar</a>
     <form action="{% url 'delete' contact.id %}" method="POST">
         {% csrf_token %}
         {% if deleting == 'y' %}
         <input type="text" name="confirmation" value="y" hidden>
-        <button class="btn btn-link btn-delete">Confirm deletion</button>
+        <button class="btn btn-link btn-delete">Confirmar deleção</button>
         {% else %}
         <input type="text" name="confirmation" value="n" hidden>
-        <button class="btn btn-link btn-delete">Delete</button>
+        <button class="btn btn-link btn-delete">Deletar</button>
         {% endif %}
     </form>
     </div>

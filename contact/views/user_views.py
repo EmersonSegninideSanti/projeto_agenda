@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -39,10 +40,12 @@ def user_login(request):
         }
     )
 
+@login_required(login_url='login')
 def user_logout(request):
     auth.logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
 def user_update(request,):
     if request.method != 'POST':
         form = UpdateRegisterForm(instance=request.user)
