@@ -1,0 +1,19 @@
+{% block antForm %}{% endblock antForm %}
+  <form
+    action="{{ form_action }}"
+    method="{{ formMethod }}"
+  >
+  {% csrf_token %}
+  <div class="form-content">
+  {% for field in form %}
+    {% block antField %}{% endblock antField %}
+    <div class="form-group">
+    <label for="{{field.id_for_label}}">{{ field.label }}</label>
+    {{ field }}
+    {{ field.errors }}
+    </div>
+    {% if field.help_text %}<p>{{field.help_text}}</p>{% endif %}
+    {% block postField %}{% endblock postField %}
+  {% endfor %}
+{% block postForm %}{% endblock postForm %}
+{% block postFormButtons %}{% endblock postFormButtons %}
