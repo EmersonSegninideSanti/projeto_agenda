@@ -28,8 +28,8 @@ ssh usuário@IP_SERVIDOR
 ### Comandos iniciais
 
 ```
-sudo apt update -y
-sudo apt upgrade -y
+ sudo apt update -y
+ sudo apt upgrade -y
 sudo apt autoremove -y
 sudo apt install build-essential -y
 
@@ -37,8 +37,8 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt install python3.11 python3.11-venv -y
 
 sudo apt install nginx -y
-sudo apt install certbot python3-certbot-nginx -y
-sudo apt install postgresql postgresql-contrib -y
+sudo apt install certbot python3-certbot-nginx -y 0
+sudo apt install postgresql postgresql-contrib -y 0
 sudo apt install libpq-dev -y
 sudo apt install git -y
 ```

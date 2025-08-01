@@ -1,0 +1,20 @@
+> Para configurar o SSH da máquina virtual
+
+-sudo nano /etc/ssh/ssh_config
+-(Descomentar e negar o valor de PasswordValidation)
+
+> Para conectar a máquina principal à virtual
+
+Na máquina principal:
+
+-ssh-keygen ....
+-(Copio o código encontrando seu arquivo. Está em ...\emers\.ssh)
+
+Na máquina virtual:
+
+-nano ~/.ssh/authorized_keys
+-(Colo a chave)
+
+> Instalo o nginx
+
+-sudo apt install nginx
