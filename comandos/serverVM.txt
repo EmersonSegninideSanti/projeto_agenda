@@ -1,7 +1,9 @@
+Antes de conectar à maquina virtual é preciso dar um 'install ssh' para fazê-lo um servidor.
+
 > Para configurar o SSH da máquina virtual
 
 -sudo nano /etc/ssh/ssh_config
--(Descomentar e negar o valor de PasswordValidation)
+-(Descomentar e negar o valor de PasswordValidation) #problematico
 
 > Para conectar a máquina principal à virtual
 
