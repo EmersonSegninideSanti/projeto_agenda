@@ -48,7 +48,7 @@ class ContactForm(forms.ModelForm):
             )
         if len(first_name) == 1:
             self.add_error(
-                'first_name',ValidationError(f'{self['first_name'].label} não pode conter apenas um caracter',code='invalid')
+                'first_name',ValidationError(f'{self["first_name"].label} não pode conter apenas um caracter',code='invalid')
             )
         if len(last_name) == 1:
             self.add_error(
